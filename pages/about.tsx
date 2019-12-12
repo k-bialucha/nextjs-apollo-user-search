@@ -1,5 +1,5 @@
-import App from '../components/App'
-import Header from '../components/Header'
+import App from '../components/App';
+import Header from '../components/Header';
 
 export default () => (
   <App>
@@ -40,4 +40,4 @@ export default () => (
       </p>
     </article>
   </App>
-)
+);
