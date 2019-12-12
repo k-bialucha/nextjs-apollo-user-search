@@ -1,11 +1,14 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
+import { IAppTheme } from '../styling/theme';
+
 export const GlobalStyle = createGlobalStyle`
   * {
     font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
       'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New',
       monospace, serif;
     box-sizing: border-box;
+    color: ${(props: { theme: IAppTheme }) => props.theme.baseText};
   }
   body {
     margin: 0;
