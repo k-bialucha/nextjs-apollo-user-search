@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { StyledSelect } from './Select.styled';
+
 export interface SelectOption {
   value: string;
   label: string;
@@ -19,7 +21,7 @@ const Select: React.FC<Props> = ({
   placeholderText,
 }) => {
   return (
-    <select
+    <StyledSelect
       value={value || ''}
       onChange={e => {
         const newValue: string = e.target.value;
@@ -34,7 +36,7 @@ const Select: React.FC<Props> = ({
           {opt.label}
         </option>
       ))}
-    </select>
+    </StyledSelect>
   );
 };
 
