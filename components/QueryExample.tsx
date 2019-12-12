@@ -1,8 +1,6 @@
-import { useQuery } from '@apollo/react-hooks'
-import { NetworkStatus } from 'apollo-client'
-import gql from 'graphql-tag'
-import ErrorMessage from './ErrorMessage'
-import PostUpvoter from './PostUpvoter'
+import { useQuery } from '@apollo/react-hooks';
+import { NetworkStatus } from 'apollo-client';
+import gql from 'graphql-tag';
 
 export const ALL_POSTS_QUERY = gql`
   query allPosts($first: Int!, $skip: Int!) {
@@ -17,10 +15,16 @@ export const ALL_POSTS_QUERY = gql`
       count
     }
   }
-`
+`;
 export const allPostsQueryVars = {
   skip: 0,
   first: 10,
+};
+
+interface Post {}
+
+interface Result {
+  allPosts: Post[];
 }
 
 export default function PostList() {
@@ -33,32 +37,32 @@ export default function PostList() {
       // more data
       notifyOnNetworkStatusChange: true,
     }
-  )
+  );
 
-  const loadingMorePosts = networkStatus === NetworkStatus.fetchMore
+  const loadingMorePosts = networkStatus === NetworkStatus.fetchMore;
 
   const loadMorePosts = () => {
     fetchMore({
       variables: {
         skip: allPosts.length,
       },
-      updateQuery: (previousResult, { fetchMoreResult }) => {
+      updateQuery: (previousResult: Result, { fetchMoreResult }) => {
         if (!fetchMoreResult) {
-          return previousResult
+          return previousResult;
         }
         return Object.assign({}, previousResult, {
           // Append the new posts results to the old one
           allPosts: [...previousResult.allPosts, ...fetchMoreResult.allPosts],
-        })
+        });
       },
-    })
-  }
+    });
+  };
 
-  if (error) return <ErrorMessage message="Error loading posts." />
-  if (loading && !loadingMorePosts) return <div>Loading</div>
+  if (error) return 'Error loading posts.';
+  if (loading && !loadingMorePosts) return <div>Loading</div>;
 
-  const { allPosts, _allPostsMeta } = data
-  const areMorePosts = allPosts.length < _allPostsMeta.count
+  const { allPosts, _allPostsMeta } = data;
+  const areMorePosts = allPosts.length < _allPostsMeta.count;
 
   return (
     <section>
@@ -68,7 +72,6 @@ export default function PostList() {
             <div>
               <span>{index + 1}. </span>
               <a href={post.url}>{post.title}</a>
-              <PostUpvoter id={post.id} votes={post.votes} />
             </div>
           </li>
         ))}
@@ -117,5 +120,5 @@ export default function PostList() {
         }
       `}</style>
     </section>
-  )
+  );
 }

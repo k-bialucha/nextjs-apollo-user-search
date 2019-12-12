@@ -1,3 +1,4 @@
+// TODO: style using styled-components
 export default ({ children }) => (
   <main>
     {children}
@@ -42,4 +43,4 @@ export default ({ children }) => (
       }
     `}</style>
   </main>
-)
+);
