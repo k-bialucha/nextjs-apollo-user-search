@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IAppTheme } from '../styling/theme';
+import { IAppTheme } from '../../styling/theme';
 
 export const StyledSelect = styled.select`
   border: 2px solid ${(props: { theme: IAppTheme }) => props.theme.border};

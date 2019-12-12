@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IAppTheme } from '../styling/theme';
+import { IAppTheme } from '../../styling/theme';
 
 export const Card = styled.div`
   width: 100%;
