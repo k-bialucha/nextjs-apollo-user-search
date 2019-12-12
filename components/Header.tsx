@@ -2,9 +2,13 @@ import React from 'react';
 
 import { AppTitleText, Container } from './Header.styled';
 
-const Header: React.FC<{}> = () => (
+interface Props {
+  title: string;
+}
+
+const Header: React.FC<Props> = ({ title }) => (
   <Container>
-    <AppTitleText>GitHub User Search</AppTitleText>
+    <AppTitleText>{title}</AppTitleText>
   </Container>
 );
 
