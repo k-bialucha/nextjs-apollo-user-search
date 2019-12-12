@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import Header from './Header';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -9,7 +10,8 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     margin: 0;
-    padding: 25px 50px;
+    width: 100vw;
+    overflow-x: hidden;
   }
   a {
     color: #22bad9;
@@ -26,7 +28,8 @@ const GlobalStyle = createGlobalStyle`
 
 const Layout: React.FC<{}> = ({ children }) => (
   <main>
-    {children}
+    <Header />
+    <div>{children}</div>
     <GlobalStyle />
   </main>
 );
