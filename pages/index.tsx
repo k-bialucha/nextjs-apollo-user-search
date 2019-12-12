@@ -1,11 +1,10 @@
 import Layout from '../components/Layout';
-
+import SearchConfigBox from '../components/SearchConfigBox';
 import { withApollo } from '../lib/apollo';
 
 const IndexPage: React.FC<{}> = () => (
   <Layout>
-    <h1>Index Page</h1>
-    <p>TODO</p>
+    <SearchConfigBox />
   </Layout>
 );
 
