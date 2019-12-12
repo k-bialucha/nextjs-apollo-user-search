@@ -16,19 +16,23 @@ export const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
   }
   a {
-    color: #22bad9;
+    color: ${(props: { theme: IAppTheme }) => props.theme.main};
   }
   p {
     font-size: 14px;
     line-height: 24px;
   }
-  article {
-    margin: 0 auto;
-    max-width: 650px;
-  }
 `;
 
-export const AppContent = styled.div`
+export const PageContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   width: 100%;
   padding: 1em 30px;
+
+  > * {
+    max-width: 800px;
+  }
 `;

@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 import Header from './Header';
-import { AppContent, GlobalStyle } from './Layout.styled';
+import { PageContent, GlobalStyle } from './Layout.styled';
 
 import { appTheme } from '../styling/theme';
 
@@ -10,7 +10,7 @@ const Layout: React.FC<{}> = ({ children }) => (
   <ThemeProvider theme={appTheme}>
     <main>
       <Header title={APP_TITLE} />
-      <AppContent>{children}</AppContent>
+      <PageContent>{children}</PageContent>
       <GlobalStyle />
     </main>
   </ThemeProvider>
