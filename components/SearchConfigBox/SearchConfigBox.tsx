@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import Select, { SelectOption } from './Select';
 
-import { Card, ControlsContainer, Title } from './SearchConfigBox.styled';
+import Button from './Button';
 import Input from './Input';
+
+import { Card, ControlsContainer, Title } from './SearchConfigBox.styled';
 
 const selectionOptions: SelectOption[] = [
   { value: 'login', label: 'login' },
@@ -36,6 +38,14 @@ const SearchConfigBox: React.FC<{}> = () => {
           typeEmail={mode === 'email'}
           disabled={!mode}
         />
+        <Button
+          onClick={() => {
+            alert('button clicked!');
+          }}
+          disabled={!query || !query.length}
+        >
+          Search
+        </Button>
       </ControlsContainer>
     </Card>
   );
