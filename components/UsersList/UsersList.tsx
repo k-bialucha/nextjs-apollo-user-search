@@ -5,6 +5,8 @@ import { useQuery } from '@apollo/react-hooks';
 import UserCard from './UserCard';
 import Card from '../Card';
 
+import { HighlightedText } from './UserCard.styled';
+
 export interface Query {
   type: 'login' | 'name' | 'email';
   key: string;
@@ -45,6 +47,12 @@ const UsersList: React.FC<Props> = ({ query }) => {
 
   return (
     <Card title="Users">
+      {!query.key && <p>Type a query in the box above to see some results.</p>}
+      {query.key && (
+        <p>
+          Results for query: <HighlightedText>{query.key}</HighlightedText>.
+        </p>
+      )}
       {data?.search?.edges.map((edge: { node: UserData }) => (
         <UserCard key={edge.node.login} name={edge.node.login} />
       ))}
