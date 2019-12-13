@@ -34,5 +34,6 @@ export const PageContent = styled.div`
 
   > * {
     max-width: 800px;
+    margin-bottom: 1em;
   }
 `;

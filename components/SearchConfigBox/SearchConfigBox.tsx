@@ -3,8 +3,8 @@ import Select, { SelectOption } from './Select';
 
 import Button from './Button';
 import Input from './Input';
-
-import { Card, ControlsContainer, Title } from './SearchConfigBox.styled';
+import Container from '../Card';
+import { ControlsContainer } from './SearchConfigBox.styled';
 
 const selectionOptions: SelectOption[] = [
   { value: 'login', label: 'login' },
@@ -22,8 +22,7 @@ const SearchConfigBox: React.FC<{}> = () => {
   };
 
   return (
-    <Card>
-      <Title>Search</Title>
+    <Container title="Searcherr">
       <ControlsContainer>
         <Select
           value={mode}
@@ -47,7 +46,7 @@ const SearchConfigBox: React.FC<{}> = () => {
           Search
         </Button>
       </ControlsContainer>
-    </Card>
+    </Container>
   );
 };
 
