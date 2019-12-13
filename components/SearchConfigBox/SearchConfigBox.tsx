@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import Select, { SelectOption } from './Select';
+
+import { Query } from '../UsersList/UsersList';
 
 import Button from './Button';
 import Input from './Input';
+import Select, { SelectOption } from './Select';
 import Container from '../Card';
+
 import { ControlsContainer } from './SearchConfigBox.styled';
 
 const selectionOptions: SelectOption[] = [
@@ -12,7 +15,11 @@ const selectionOptions: SelectOption[] = [
   { value: 'email', label: 'email' },
 ];
 
-const SearchConfigBox: React.FC<{}> = () => {
+interface Props {
+  onSearch: (query: Query) => any;
+}
+
+const SearchConfigBox: React.FC<Props> = ({ onSearch }) => {
   const [mode, setMode] = useState<string>(null);
   const [query, setQuery] = useState<string>('');
 
@@ -39,7 +46,7 @@ const SearchConfigBox: React.FC<{}> = () => {
         />
         <Button
           onClick={() => {
-            alert('button clicked!');
+            onSearch({ key: query, type: 'login' });
           }}
           disabled={!query || !query.length}
         >

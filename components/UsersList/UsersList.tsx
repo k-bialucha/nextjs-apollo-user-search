@@ -5,6 +5,11 @@ import { useQuery } from '@apollo/react-hooks';
 import UserCard from './UserCard';
 import Card from '../Card';
 
+export interface Query {
+  type: 'login' | 'name' | 'email';
+  key: string;
+}
+
 interface UserData {
   login: string;
   email: string;
@@ -25,10 +30,14 @@ export const SEARCH_USERS_QUERY = gql`
   }
 `;
 
-const UsersList: React.FC<{}> = () => {
+interface Props {
+  query: Query;
+}
+
+const UsersList: React.FC<Props> = ({ query }) => {
   const { loading, error, data } = useQuery(SEARCH_USERS_QUERY, {
     variables: {
-      query: 'kamil',
+      query: query.key,
       first: 10,
     },
     notifyOnNetworkStatusChange: true,
