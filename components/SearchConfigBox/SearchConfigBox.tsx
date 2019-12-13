@@ -22,7 +22,7 @@ const SearchConfigBox: React.FC<{}> = () => {
   };
 
   return (
-    <Container title="Searcherr">
+    <Container title="Search">
       <ControlsContainer>
         <Select
           value={mode}
