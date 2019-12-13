@@ -33,6 +33,8 @@ const SearchConfigBox: React.FC<{}> = () => {
           value={query}
           onChange={setQuery}
           placeholderText={mode || 'select a field...'}
+          typeEmail={mode === 'email'}
+          disabled={!mode}
         />
       </ControlsContainer>
     </Card>
