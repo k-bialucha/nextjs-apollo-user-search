@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Select, { SelectOption } from './Select';
 
-import { Card, Title } from './SearchConfigBox.styled';
+import { Card, ControlsContainer, Title } from './SearchConfigBox.styled';
+import Input from './Input';
 
 const selectionOptions: SelectOption[] = [
   { value: 'login', label: 'login' },
@@ -11,18 +12,29 @@ const selectionOptions: SelectOption[] = [
 
 const SearchConfigBox: React.FC<{}> = () => {
   const [mode, setMode] = useState<string>(null);
+  const [query, setQuery] = useState<string>('');
+
+  const handleModeChange = (mode: string) => {
+    setMode(mode);
+    setQuery('');
+  };
 
   return (
     <Card>
       <Title>Search</Title>
-      <p>
+      <ControlsContainer>
         <Select
           value={mode}
-          onChange={setMode}
+          onChange={handleModeChange}
           options={selectionOptions}
           placeholderText="Search by"
         />
-      </p>
+        <Input
+          value={query}
+          onChange={setQuery}
+          placeholderText={mode || 'select a field...'}
+        />
+      </ControlsContainer>
     </Card>
   );
 };

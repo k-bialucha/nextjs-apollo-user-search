@@ -11,3 +11,12 @@ export const Title = styled.h2`
   color: ${(props: { theme: IAppTheme }) => props.theme.main};
   margin: 0;
 `;
+
+export const ControlsContainer = styled.p`
+  display: flex;
+  justify-content: center;
+
+  > * {
+    margin: 0 5px;
+  }
+`;
