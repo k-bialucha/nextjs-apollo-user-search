@@ -12,7 +12,7 @@ const UserCard: React.FC<Props> = ({ name }) => {
     <Container>
       Name: <HighlightedText>{name}</HighlightedText>
       <Link href={`/user/${name}`}>
-        <ProfileButton type="button">profile</ProfileButton>
+        <ProfileButton type="button">show more</ProfileButton>
       </Link>
     </Container>
   );
