@@ -108,4 +108,22 @@ describe('UserList', () => {
       'Type a query in the box above to see some results.'
     );
   });
+
+  it('matches the snapshot in normal state', () => {
+    useQueryMock.mockReturnValue({ data: fakeData });
+
+    const wrapper = shallow(
+      <UsersList query={{ key: 'fake-query', type: 'login' }} />
+    );
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('matches the snapshot in empty query state', () => {
+    useQueryMock.mockReturnValue({ data: null });
+
+    const wrapper = shallow(<UsersList query={{ key: '', type: 'login' }} />);
+
+    expect(wrapper).toMatchSnapshot();
+  });
 });

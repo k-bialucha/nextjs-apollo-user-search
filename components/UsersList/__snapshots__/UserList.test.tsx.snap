@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserList matches the snapshot in empty query state 1`] = `
+<Card
+  title="Users"
+>
+  <p>
+    Type a query in the box above to see some results.
+  </p>
+</Card>
+`;
+
+exports[`UserList matches the snapshot in normal state 1`] = `
+<Card
+  title="Users"
+>
+  <p>
+    Results for query: 
+    <styled.span>
+      fake-query
+    </styled.span>
+    .
+  </p>
+  <UserCard
+    key="some-login"
+    name="some-login"
+  />
+  <UserCard
+    key="fancy-login"
+    name="fancy-login"
+  />
+</Card>
+`;
