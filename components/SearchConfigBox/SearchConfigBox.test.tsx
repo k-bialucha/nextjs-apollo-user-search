@@ -163,4 +163,32 @@ describe('SearchConfigBox', () => {
     expect(inputValueAfterChange).toBe(someInputValue);
     expect(isButtonDisabled).not.toBe(true);
   });
+
+  it('provides hint as Input placeholder when mode is not set', () => {
+    const wrapper = shallow(<SearchConfigBox onSearch={jest.fn()} />);
+
+    const select = wrapper.find(Select);
+    const initialMode: string = select.prop('value');
+    expect(initialMode).toBe(null);
+
+    const input = wrapper.find(Input);
+    const placeholderText: string = input.prop('placeholderText');
+
+    expect(placeholderText).toBe('select a field...');
+  });
+
+  it('provides mode name as Input placeholder', () => {
+    const wrapper = shallow(<SearchConfigBox onSearch={jest.fn()} />);
+
+    const select = wrapper.find(Select);
+    const onSelectChangeHandler: (mode: string) => any = select.prop(
+      'onChange'
+    );
+    onSelectChangeHandler('email');
+
+    const input = wrapper.find(Input);
+    const placeholderText: string = input.prop('placeholderText');
+
+    expect(placeholderText).toBe('email');
+  });
 });
