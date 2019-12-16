@@ -72,4 +72,40 @@ describe('UserList', () => {
 
     expect(userItems.length).toBe(0);
   });
+
+  it('renders a hint paragraph with query when query key specified', () => {
+    useQueryMock.mockReturnValue({ data: fakeData });
+    const someQueryKey: string = 'some-query';
+
+    const wrapper = shallow(
+      <UsersList query={{ key: someQueryKey, type: 'login' }} />
+    );
+
+    const paragraph = wrapper.find('p');
+
+    const paragraphText = paragraph.text();
+
+    const textContainsFragment = paragraphText.includes('Results for query:');
+    const textContainsQueryKey = paragraphText.includes(someQueryKey);
+
+    expect(textContainsFragment).toBe(true);
+    expect(textContainsQueryKey).toBe(true);
+  });
+
+  it('renders a hint paragraph when query key not specified', () => {
+    useQueryMock.mockReturnValue({ data: fakeData });
+    const someQueryKey: string = ''; // might be also null
+
+    const wrapper = shallow(
+      <UsersList query={{ key: someQueryKey, type: 'login' }} />
+    );
+
+    const paragraph = wrapper.find('p');
+
+    const paragraphText = paragraph.text();
+
+    expect(paragraphText).toBe(
+      'Type a query in the box above to see some results.'
+    );
+  });
 });
