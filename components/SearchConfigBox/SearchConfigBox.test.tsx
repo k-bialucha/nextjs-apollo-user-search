@@ -121,4 +121,46 @@ describe('SearchConfigBox', () => {
 
     expect(inputValueAfterReset).toBe('');
   });
+
+  it('sets Button to disabled when query is empty string', () => {
+    const wrapper = shallow(<SearchConfigBox onSearch={jest.fn()} />);
+
+    const select = wrapper.find(Select);
+    const onSelectChangeHandler: (mode: string) => any = select.prop(
+      'onChange'
+    );
+    onSelectChangeHandler('email');
+
+    const input = wrapper.find(Input);
+    const button = wrapper.find(Button);
+
+    const inputValue: string = input.prop('value');
+    const isButtonDisabled: boolean = button.prop('disabled');
+
+    expect(inputValue).toBe('');
+    expect(isButtonDisabled).toBe(true);
+  });
+
+  it('resets Button disabled state when query is present', () => {
+    const wrapper = shallow(<SearchConfigBox onSearch={jest.fn()} />);
+
+    const select = wrapper.find(Select);
+    const onSelectChangeHandler: (mode: string) => any = select.prop(
+      'onChange'
+    );
+    onSelectChangeHandler('email');
+
+    const input = wrapper.find(Input);
+    const onInputChangeHandler: (value: string) => any = input.prop('onChange');
+    const someInputValue: string = 'gaearon';
+    onInputChangeHandler(someInputValue);
+
+    const inputAfterChange = wrapper.find(Input);
+    const button = wrapper.find(Button);
+    const inputValueAfterChange = inputAfterChange.prop('value');
+    const isButtonDisabled: boolean = button.prop('disabled');
+
+    expect(inputValueAfterChange).toBe(someInputValue);
+    expect(isButtonDisabled).not.toBe(true);
+  });
 });
