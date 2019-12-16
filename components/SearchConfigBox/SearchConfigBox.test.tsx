@@ -34,4 +34,62 @@ describe('SearchConfigBox', () => {
     const expectedQuery: Query = { key: someQuery, type: 'login' };
     expect(someOnSearchHandler).toHaveBeenCalledWith(expectedQuery);
   });
+
+  it('disables the Input when mode is not selected (null)', () => {
+    const wrapper = shallow(<SearchConfigBox onSearch={jest.fn()} />);
+
+    const select = wrapper.find(Select);
+    const initialMode: string = select.prop('value');
+    expect(initialMode).toBe(null);
+
+    const input = wrapper.find(Input);
+    const isInputDisabled: boolean = input.prop('disabled');
+
+    expect(isInputDisabled).toBe(true);
+  });
+
+  it('enables the Input when some mode is selected', () => {
+    const wrapper = shallow(<SearchConfigBox onSearch={jest.fn()} />);
+
+    const select = wrapper.find(Select);
+    const onSelectChangeHandler: (mode: string) => any = select.prop(
+      'onChange'
+    );
+    onSelectChangeHandler('email');
+
+    const input = wrapper.find(Input);
+    const isInputDisabled: boolean = input.prop('disabled');
+
+    expect(isInputDisabled).not.toBe(true);
+  });
+
+  it('passes typeEmail prop to the Input when is in "email" mode', () => {
+    const wrapper = shallow(<SearchConfigBox onSearch={jest.fn()} />);
+
+    const select = wrapper.find(Select);
+    const onSelectChangeHandler: (mode: string) => any = select.prop(
+      'onChange'
+    );
+    onSelectChangeHandler('email');
+
+    const input = wrapper.find(Input);
+    const isInputDisabled: boolean = input.prop('typeEmail');
+
+    expect(isInputDisabled).toBe(true);
+  });
+
+  it('passes falsy typeEmail prop to the Input when is not in "email" mode', () => {
+    const wrapper = shallow(<SearchConfigBox onSearch={jest.fn()} />);
+
+    const select = wrapper.find(Select);
+    const onSelectChangeHandler: (mode: string) => any = select.prop(
+      'onChange'
+    );
+    onSelectChangeHandler('login');
+
+    const input = wrapper.find(Input);
+    const isInputDisabled: boolean = input.prop('typeEmail');
+
+    expect(isInputDisabled).toBe(false);
+  });
 });
