@@ -4,7 +4,7 @@ import { StyledButton } from './Button.styled';
 
 interface Props {
   disabled?: boolean;
-  onClick: ([...any]) => any;
+  onClick: (...args: any[]) => any;
 }
 
 const Button: React.FC<Props> = ({ children, disabled, onClick }) => {
