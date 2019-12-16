@@ -2,6 +2,7 @@ module.exports = {
   testEnvironment: 'node',
   preset: 'ts-jest',
   setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
