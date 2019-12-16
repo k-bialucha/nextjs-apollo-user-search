@@ -92,4 +92,33 @@ describe('SearchConfigBox', () => {
 
     expect(isInputDisabled).toBe(false);
   });
+
+  it('resets query on mode change', () => {
+    const wrapper = shallow(<SearchConfigBox onSearch={jest.fn()} />);
+
+    const select = wrapper.find(Select);
+    const onSelectChangeHandler: (mode: string) => any = select.prop(
+      'onChange'
+    );
+    onSelectChangeHandler('login');
+
+    const input = wrapper.find(Input);
+    const onInputChangeHandler: (value: string) => any = input.prop('onChange');
+    const someInputValue: string = 'gaearon';
+    onInputChangeHandler(someInputValue);
+
+    const inputAfterChange = wrapper.find(Input);
+    expect(inputAfterChange.prop('value')).toBe(someInputValue);
+
+    const selectAfterChange = wrapper.find(Select);
+    const onSelectAfterChangeChangeHandler: (
+      mode: string
+    ) => any = selectAfterChange.prop('onChange');
+    onSelectAfterChangeChangeHandler('name');
+
+    const inputAfterReset = wrapper.find(Input);
+    const inputValueAfterReset = inputAfterReset.prop('value');
+
+    expect(inputValueAfterReset).toBe('');
+  });
 });
