@@ -1,7 +1,8 @@
 import Layout from '../../components/Layout';
 import { useRouter } from 'next/router';
 import UserProfile from '../../components/UserProfile';
-// import { withApollo } from '../../lib/apollo';
+
+import { withApollo } from '../../lib/apollo';
 
 const UserPage: React.FC<{}> = () => {
   const router = useRouter();
@@ -14,6 +15,4 @@ const UserPage: React.FC<{}> = () => {
   );
 };
 
-// TODO: use Apollo
-// export default withApollo(UserPage);
-export default UserPage;
+export default withApollo(UserPage);
